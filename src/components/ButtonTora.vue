@@ -57,7 +57,8 @@ export default defineComponent({
       padding: 2px;
     }
 
-    &:active {
+    &:active,
+    &:hover {
       border: 3px green solid;
     }
 

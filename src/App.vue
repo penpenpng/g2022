@@ -1,10 +1,5 @@
 <template>
-  <component
-    class="scene"
-    :is="scene.component"
-    v-bind="scene.props"
-    @goScene="goScene"
-  />
+  <component class="scene" :is="scene.component" @goScene="goScene" />
 </template>
 
 <script lang="ts">
@@ -20,15 +15,12 @@ export default defineComponent({
   setup() {
     const scene: {
       component: SceneComponent;
-      props: unknown;
     } = shallowReactive({
       component: Scenes.Loading,
-      props: {},
     });
 
-    const goScene = (next: { scene: SceneComponent; props: unknown }) => {
+    const goScene = (next: { scene: SceneComponent }) => {
       scene.component = next.scene;
-      scene.props = next.props;
     };
 
     return {

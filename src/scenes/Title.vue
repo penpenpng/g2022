@@ -4,8 +4,8 @@
 
     <h2>ちゅうい</h2>
     <ul>
-      <li>音が出ます。</li>
-      <li>ルール説明は面倒なので省きました。察してください。</li>
+      <li>おとがでます。</li>
+      <li>るーるせつめいはありません。めんどくさかったからです。</li>
     </ul>
 
     <h2>くれじっと</h2>
@@ -19,7 +19,7 @@
       </li>
     </ul>
 
-    <div class="button" @click="start">すたーと</div>
+    <ButtonUI @click="start">すたーと</ButtonUI>
   </div>
 </template>
 
@@ -29,9 +29,13 @@ import { defineComponent } from "vue";
 import sceneMixin from "./scene";
 import Game from "./Game.vue";
 
+import ButtonUI from "../components/ButtonUI.vue";
+
 export default defineComponent({
   name: "Title",
-  components: {},
+  components: {
+    ButtonUI,
+  },
   ...sceneMixin,
   setup(_, { emit }) {
     const start = () => {
@@ -46,12 +50,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped lang="scss">
-.button {
-  background-color: white;
-  border: 1px black solid;
-  padding: 1rem 2rem;
-  margin: 30px;
-}
-</style>

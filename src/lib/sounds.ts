@@ -37,11 +37,11 @@ export const sounds: Record<Sounds, AudioAsset> = {
 };
 
 export const play = (sound: Sounds): void => {
-  const { audio, volume } = sounds[sound];
-
-  audio.volume = volume;
-  audio.currentTime = 0;
-  audio.play();
+  // TODO: uncomment
+  // const { audio, volume } = sounds[sound];
+  // audio.volume = volume;
+  // audio.currentTime = 0;
+  // audio.play();
 };
 
 export const pause = (sound: Sounds): void => {
