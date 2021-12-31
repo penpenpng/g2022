@@ -22,7 +22,7 @@ export default defineComponent({
       component: SceneComponent;
       props: unknown;
     } = shallowReactive({
-      component: Scenes.Game,
+      component: Scenes.Loading,
       props: {},
     });
 

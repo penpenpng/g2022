@@ -1,25 +1,37 @@
 <template>
-  <div>ロード中</div>
+  <div>{{ message }}</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
-import { preload } from "../lib/questions";
+import { preload } from "../lib/assets";
 
 import sceneMixin from "./scene";
-import Title from "./Title.vue";
+// TODO: ./Title.vue に戻す
+import Title from "./Game.vue";
 
 export default defineComponent({
   name: "Loading",
   components: {},
   ...sceneMixin,
   setup(_, { emit }) {
-    preload().then(() => {
-      emit("goScene", {
-        scene: Title,
+    const message = ref("ロード中……");
+
+    preload()
+      .then(() => {
+        emit("goScene", {
+          scene: Title,
+        });
+      })
+      .catch(() => {
+        message.value =
+          "アセットの読み込みに失敗しました。リロードを試してみてください。";
       });
-    });
+
+    return {
+      message,
+    };
   },
 });
 </script>

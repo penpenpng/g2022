@@ -2,6 +2,7 @@ import { reactive } from "vue";
 
 import { pick, Question } from "./questions";
 import { TIME_MS_MAX, TIME_DELTA } from "./consts";
+import { play } from "./sounds";
 
 interface State {
   question: Question;
@@ -90,6 +91,8 @@ export const clickRight = (): void => {
 export const hitMokugyo = (): void => {
   // TODO: 木魚が壊れる確率の式を考える
   // TODO: 木魚で回復する時間の式を考える
+
+  play("mokugyo");
 
   state.mokugyoHits++;
   state.timeMs = Math.min(state.timeMs + 30, TIME_MS_MAX);

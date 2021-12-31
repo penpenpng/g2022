@@ -1,6 +1,6 @@
 <template>
   <div class="mokugyo">
-    <img @click="onClick" src="../assets/ui/mokugyo.png" />
+    <img @click="hitMokugyo" src="../assets/ui/mokugyo.png" />
     <div v-if="isBroken" class="effect-broken">
       <div class="text">こわれた！</div>
     </div>
