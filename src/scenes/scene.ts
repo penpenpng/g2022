@@ -1,14 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { DefineComponent } from "vue";
+import {
+  ComponentOptionsMixin,
+  ComputedOptions,
+  DefineComponent,
+  MethodOptions,
+} from "vue";
 
 export type SceneComponent<P> = DefineComponent<
   P,
   any,
   any,
-  any,
-  any,
-  any,
-  any,
+  ComputedOptions,
+  MethodOptions,
+  ComponentOptionsMixin,
+  ComponentOptionsMixin,
   SceneMixin["emits"]
 >;
 
