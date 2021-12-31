@@ -1,7 +1,7 @@
 import { reactive } from "vue";
 
 import { pick, Question } from "./questions";
-import { TIME_MS_MAX, TIME_DELTA } from "./consts";
+import { TIME_MS_MAX, TIME_DELTA, MOKUGYO_RATE } from "./consts";
 import { play, pause } from "./sounds";
 
 interface State {
@@ -101,17 +101,23 @@ export const hitMokugyo = (): void => {
     return;
   }
 
-  // TODO: 木魚が壊れる確率の式を考える
-  // TODO: 木魚で回復する時間の式を考える
-  const destroy = false;
+  const destroy =
+    Math.random() >
+    Math.max(MOKUGYO_RATE - state.mokugyoHits, 1) / MOKUGYO_RATE;
 
   if (destroy) {
     play("break");
+
+    state.mokugyoBroken = true;
   } else {
     play("mokugyo");
-  }
 
-  state.mokugyoBroken = destroy;
-  state.mokugyoHits++;
-  state.timeMs = Math.min(state.timeMs + 30, TIME_MS_MAX);
+    state.mokugyoHits++;
+
+    const recover =
+      (TIME_MS_MAX * Math.max(MOKUGYO_RATE - state.mokugyoHits, 1)) /
+      MOKUGYO_RATE;
+
+    state.timeMs = Math.min(state.timeMs + recover, TIME_MS_MAX);
+  }
 };

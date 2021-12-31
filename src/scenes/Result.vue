@@ -11,7 +11,7 @@
 
     <ul>
       <li v-if="solvedScore > 0">あつめたとら: {{ solvedScore }}</li>
-      <li v-if="mokugyoScore > 0">もくぎょれんだ: {{ mokugyoScore }}</li>
+      <li v-if="mokugyoScore > 0">もくぎょ: {{ mokugyoScore }}</li>
       <li v-if="clearScore > 0">のーみす: {{ clearScore }}</li>
       <li v-if="destroyScore > 0">もくぎょはかい: {{ destroyScore }}</li>
     </ul>
@@ -49,7 +49,7 @@ export default defineComponent({
         }
       }),
       solvedScore: computed(() => state.solved * 20),
-      mokugyoScore: computed(() => state.mokugyoHits),
+      mokugyoScore: computed(() => state.mokugyoHits * 5),
       clearScore: computed(() => (state.gameoverBy !== "wrong" ? 50 : 0)),
       destroyScore: computed(() => (state.mokugyoBroken ? 50 : 0)),
       tweet: () => {

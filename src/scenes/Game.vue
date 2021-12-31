@@ -34,13 +34,13 @@ export default defineComponent({
     start();
 
     // TODO: uncomment
-    // watchEffect(() => {
-    //   if (state.gameoverBy) {
-    //     emit("goScene", {
-    //       scene: Result,
-    //     });
-    //   }
-    // });
+    watchEffect(() => {
+      if (state.gameoverBy) {
+        emit("goScene", {
+          scene: Result,
+        });
+      }
+    });
 
     return {};
   },
