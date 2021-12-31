@@ -1,16 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <component :is="scene.component" v-bind="scene.props" @goScene="goScene" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import { defineComponent, shallowReactive } from "vue";
+
+import { Scenes, SceneComponent } from "./scenes";
 
 export default defineComponent({
   name: "App",
   components: {
-    HelloWorld,
+    ...Scenes,
+  },
+  setup() {
+    const scene: {
+      component: SceneComponent;
+      props: unknown;
+    } = shallowReactive({
+      component: Scenes.Title,
+      props: {},
+    });
+
+    const goScene = (next: { scene: SceneComponent; props: unknown }) => {
+      scene.component = next.scene;
+      scene.props = next.props;
+    };
+
+    return {
+      scene,
+      goScene,
+    };
   },
 });
 </script>
