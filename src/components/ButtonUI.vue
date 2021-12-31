@@ -16,8 +16,8 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .button {
-  padding: 1rem 2rem;
-  margin-top: 30px;
+  padding: 10px 15px;
+  margin-top: 10px;
 
   background-color: white;
   border: 1px black solid;

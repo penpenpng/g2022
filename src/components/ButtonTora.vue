@@ -37,6 +37,8 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .tora-buttons {
+  margin-top: 30px;
+
   width: 90%;
 
   display: flex;

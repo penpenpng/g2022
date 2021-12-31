@@ -28,6 +28,8 @@ export default defineComponent({
 $size: 100px;
 
 .mokugyo {
+  margin-top: 20px;
+
   position: relative;
 
   width: $size;

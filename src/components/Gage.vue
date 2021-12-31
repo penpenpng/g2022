@@ -22,6 +22,8 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .gage {
+  margin-top: 20px;
+
   width: 90%;
   height: 20px;
 

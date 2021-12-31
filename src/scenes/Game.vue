@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="solved">{{ solved }}</div>
     <Question />
     <ButtonTora />
     <ButtonMokugyo />
@@ -43,9 +42,7 @@ export default defineComponent({
     //   }
     // });
 
-    return {
-      solved: computed(() => state.solved),
-    };
+    return {};
   },
 });
 </script>

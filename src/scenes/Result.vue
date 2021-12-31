@@ -2,6 +2,10 @@
   <div>
     <h1>げーむおーばー</h1>
 
+    <div v-if="message" style="white-space: pre-line; text-align: center">
+      {{ message }}
+    </div>
+
     <h2>すこあ</h2>
     <div>{{ solvedScore + mokugyoScore + clearScore + destroyScore }}</div>
 
@@ -37,6 +41,13 @@ export default defineComponent({
   ...sceneMixin,
   setup(_, { emit }) {
     return {
+      message: computed(() => {
+        if (state.gameoverBy === "wrong") {
+          return `ざんねん！\n「${state.question.name}」はとらではありません！`;
+        } else {
+          return null;
+        }
+      }),
       solvedScore: computed(() => state.solved * 20),
       mokugyoScore: computed(() => state.mokugyoHits),
       clearScore: computed(() => (state.gameoverBy !== "wrong" ? 50 : 0)),

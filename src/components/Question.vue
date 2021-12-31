@@ -1,6 +1,6 @@
 <template>
   <div class="question">
-    <img :src="src" alt="" />
+    <img :src="src" />
   </div>
 </template>
 
@@ -28,6 +28,7 @@ export default defineComponent({
 <style scoped lang="scss">
 .question {
   width: 90%;
+  height: 300px;
 
   display: flex;
   justify-content: center;
@@ -38,6 +39,9 @@ export default defineComponent({
 
   img {
     width: 100%;
+    height: 100%;
+
+    object-fit: contain;
   }
 }
 </style>
