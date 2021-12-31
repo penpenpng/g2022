@@ -78,7 +78,7 @@ export default defineComponent({
       destroyScore,
       totalScore,
       tweet: () => {
-        const text = `あけましておめでとう！私はうしあつめで ${totalScore.value} 点獲得しました！`;
+        const text = `あけましておめでとう！私はとらあつめで ${totalScore.value} 点獲得しました！`;
         const url = `https://twitter.com/intent/tweet?text=${encodeURI(
           text
         )}&url=${encodeURI(window.location.href)}`;
