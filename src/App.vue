@@ -22,7 +22,7 @@ export default defineComponent({
       component: SceneComponent;
       props: unknown;
     } = shallowReactive({
-      component: Scenes.Title,
+      component: Scenes.Game,
       props: {},
     });
 
@@ -69,6 +69,8 @@ body {
   height: 100%;
   max-height: 1400px;
 
+  background-color: lightgreen;
+
   & > .scene {
     width: 100%;
     height: 100%;
@@ -76,8 +78,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    background: green;
   }
 }
 </style>

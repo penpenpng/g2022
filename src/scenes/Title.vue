@@ -8,7 +8,6 @@
 import { defineComponent } from "vue";
 
 import sceneMixin from "./scene";
-
 import Game from "./Game.vue";
 
 export default defineComponent({

@@ -9,7 +9,6 @@
 import { defineComponent } from "vue";
 
 import sceneMixin from "./scene";
-
 import Title from "./Title.vue";
 import Game from "./Game.vue";
 
