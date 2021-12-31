@@ -12,7 +12,7 @@
     </div>
 
     <h2>すこあ</h2>
-    <div>{{ solvedScore + mokugyoScore + clearScore + destroyScore }}</div>
+    <div>{{ totalScore }}</div>
 
     <ul>
       <li v-if="solvedScore > 0">あつめたとら: {{ solvedScore }}</li>
@@ -47,7 +47,18 @@ export default defineComponent({
   },
   ...sceneMixin,
   setup(_, { emit }) {
-    console.log(state.question.src);
+    const solvedScore = computed(() => state.solved * 20);
+    const mokugyoScore = computed(() => state.mokugyoHits * 5);
+    const clearScore = computed(() => (state.gameoverBy !== "wrong" ? 50 : 0));
+    const destroyScore = computed(() => (state.mokugyoBroken ? 50 : 0));
+    const totalScore = computed(
+      () =>
+        solvedScore.value +
+        mokugyoScore.value +
+        clearScore.value +
+        destroyScore.value
+    );
+
     return {
       lastImage: computed(() => state.question.src),
       message: computed(() => {
@@ -61,12 +72,13 @@ export default defineComponent({
           return null;
         }
       }),
-      solvedScore: computed(() => state.solved * 20),
-      mokugyoScore: computed(() => state.mokugyoHits * 5),
-      clearScore: computed(() => (state.gameoverBy !== "wrong" ? 50 : 0)),
-      destroyScore: computed(() => (state.mokugyoBroken ? 50 : 0)),
+      solvedScore,
+      mokugyoScore,
+      clearScore,
+      destroyScore,
+      totalScore,
       tweet: () => {
-        const text = "ぽわ";
+        const text = `あけましておめでとう！私はうしあつめで ${totalScore.value} 点獲得しました！`;
         const url = `https://twitter.com/intent/tweet?text=${encodeURI(
           text
         )}&url=${encodeURI(window.location.href)}`;
