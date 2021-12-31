@@ -2,7 +2,12 @@
   <div>
     <h1>げーむおーばー</h1>
 
-    <div v-if="message" style="white-space: pre-line; text-align: center">
+    <Question v-if="message" />
+
+    <div
+      v-if="message"
+      style="white-space: pre-line; text-align: center; margin-top: 10px"
+    >
       {{ message }}
     </div>
 
@@ -28,6 +33,7 @@ import { computed, defineComponent } from "vue";
 import { state } from "../lib/game";
 
 import ButtonUI from "../components/ButtonUI.vue";
+import Question from "../components/Question.vue";
 
 import sceneMixin from "./scene";
 import Title from "./Title.vue";
@@ -36,14 +42,21 @@ import Game from "./Game.vue";
 export default defineComponent({
   name: "Result",
   components: {
+    Question,
     ButtonUI,
   },
   ...sceneMixin,
   setup(_, { emit }) {
+    console.log(state.question.src);
     return {
+      lastImage: computed(() => state.question.src),
       message: computed(() => {
         if (state.gameoverBy === "wrong") {
-          return `ざんねん！\n「${state.question.name}」はとらではありません！`;
+          if (state.question.isTora) {
+            return `ざんねん！\n「${state.question.name}」はとらです！`;
+          } else {
+            return `ざんねん！\n「${state.question.name}」はとらではありません！`;
+          }
         } else {
           return null;
         }

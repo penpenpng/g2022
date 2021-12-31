@@ -36,15 +36,21 @@ export default defineComponent({
   box-sizing: border-box;
 }
 
-html,
-body {
+html {
   margin: 0;
   padding: 0;
+
+  background-color: lightgreen;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
 
   width: 100vw;
   height: 100vh;
 
-  overflow: hidden;
+  overflow: auto;
 }
 
 body {
@@ -54,14 +60,10 @@ body {
 }
 
 #app {
-  padding: 20px;
-
   width: 100%;
   max-width: 600px;
   height: 100%;
   max-height: 1400px;
-
-  background-color: lightgreen;
 
   & > .scene {
     width: 100%;

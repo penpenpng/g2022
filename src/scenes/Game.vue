@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { computed, watchEffect, defineComponent } from "vue";
+import { watchEffect, defineComponent } from "vue";
 
 import { initialize, state, start } from "../lib/game";
 
@@ -33,7 +33,6 @@ export default defineComponent({
     initialize();
     start();
 
-    // TODO: uncomment
     watchEffect(() => {
       if (state.gameoverBy) {
         emit("goScene", {
