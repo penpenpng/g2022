@@ -1,29 +1,12 @@
 # g2022
 
-## Project setup
+https://penpenpng.github.io/g2022/dist/
 
-```
-yarn install
-```
+## FAQ
 
-### Compiles and hot-reloads for development
-
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-
-```
-yarn build
-```
-
-### Lints and fixes files
-
-```
-yarn lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Q. これなに？
+  - A. [@penpen_png](https://twitter.com/penpen_png) の毎年恒例、大晦日一日クソゲーチャレンジの産物です。過去の遺物は[こちら](https://github.com/penpenpng/bomnou)をどうぞ。
+- Q. むずくない？
+  - A. テストプレーする時間がありませんでした
+- Q. は？
+  - A. ゆるして
