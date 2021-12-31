@@ -1,64 +1,35 @@
 <template>
   <div class="tora-buttons">
-    <div class="button" @click="buttons.left.onClick">
+    <div class="button" @click="clickLeft">
       <img
         :src="src"
-        :style="{ visibility: buttons.left.isTora ? 'visible' : 'hidden' }"
+        :style="{ visibility: tora === 'left' ? 'visible' : 'hidden' }"
       />
     </div>
-    <div class="button" @click="buttons.right.onClick">
+    <div class="button" @click="clickRight">
       <img
         :src="src"
-        :style="{ visibility: buttons.right.isTora ? 'visible' : 'hidden' }"
+        :style="{ visibility: tora === 'right' ? 'visible' : 'hidden' }"
       />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, shallowReactive } from "vue";
+import { computed, defineComponent } from "vue";
+
+import { state, clickLeft, clickRight } from "../lib/game";
 
 export default defineComponent({
   name: "ButtonTora",
   components: {},
   props: {},
-  emits: ["clickTora", "clickNone"],
-  setup(_, { emit }) {
-    const TORA_BUTTON = {
-      isTora: true,
-      onClick: () => {
-        emit("clickTora");
-        shuffleButtons();
-      },
-    };
-
-    const NONE_BUTTON = {
-      isTora: false,
-      onClick: () => {
-        emit("clickNone");
-        shuffleButtons();
-      },
-    };
-
-    type Button = typeof TORA_BUTTON | typeof NONE_BUTTON;
-
-    const buttons = shallowReactive({
-      right: TORA_BUTTON as Button,
-      left: NONE_BUTTON as Button,
-    });
-
-    const shuffleButtons = () => {
-      const rand = Math.random() < 0.5;
-
-      buttons.right = rand ? TORA_BUTTON : NONE_BUTTON;
-      buttons.left = !rand ? TORA_BUTTON : NONE_BUTTON;
-    };
-
-    shuffleButtons();
-
+  setup() {
     return {
       src: require("../assets/ui/tora.png"),
-      buttons,
+      tora: computed(() => state.tora),
+      clickLeft,
+      clickRight,
     };
   },
 });

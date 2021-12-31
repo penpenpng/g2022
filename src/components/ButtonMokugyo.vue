@@ -8,20 +8,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
+
+import { state, hitMokugyo } from "../lib/game";
 
 export default defineComponent({
   name: "ButtonMokugyo",
   components: {},
-  props: {
-    isBroken: Boolean,
-  },
-  emits: ["click"],
-  setup(props, { emit }) {
+  setup() {
     return {
-      onClick: () => {
-        if (!props.isBroken) emit("click");
-      },
+      isBroken: computed(() => state.mokugyoBroken),
+      hitMokugyo,
     };
   },
 });

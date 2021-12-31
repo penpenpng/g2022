@@ -1,29 +1,25 @@
 <template>
-  <div>
-    <button @click="start">start</button>
-  </div>
+  <div>ロード中</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
+import { preload } from "../lib/questions";
+
 import sceneMixin from "./scene";
-import Game from "./Game.vue";
+import Title from "./Title.vue";
 
 export default defineComponent({
-  name: "Title",
+  name: "Loading",
   components: {},
   ...sceneMixin,
   setup(_, { emit }) {
-    const start = () => {
+    preload().then(() => {
       emit("goScene", {
-        scene: Game,
+        scene: Title,
       });
-    };
-
-    return {
-      start,
-    };
+    });
   },
 });
 </script>

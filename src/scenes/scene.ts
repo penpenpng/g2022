@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ComponentOptionsMixin,
   ComputedOptions,
@@ -6,8 +5,9 @@ import {
   MethodOptions,
 } from "vue";
 
-export type SceneComponent<P> = DefineComponent<
-  P,
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export type SceneComponent = DefineComponent<
+  any,
   any,
   any,
   ComputedOptions,
@@ -19,10 +19,7 @@ export type SceneComponent<P> = DefineComponent<
 
 interface SceneMixin {
   emits: {
-    // XXX:
-    //   Ganerics doesn't work for type checking on calling `goScene()` in components' `setup()`.
-    //   In the context, it is regarded that P is unknown.
-    goScene: <P>(next: { scene: SceneComponent<P>; props?: P }) => boolean;
+    goScene: (next: { scene: SceneComponent }) => boolean;
   };
 }
 

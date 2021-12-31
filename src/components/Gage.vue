@@ -1,16 +1,21 @@
 <template>
   <div class="gage">
-    <div class="value" :style="{ width: `${value * 100}%` }"></div>
+    <div class="value" :style="{ width: `${value}%` }"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+
+import { state } from "../lib/game";
+import { TIME_MS_MAX } from "../lib/consts";
 
 export default defineComponent({
   name: "Gage",
-  props: {
-    value: Number,
+  setup() {
+    return {
+      value: computed(() => (state.timeMs / TIME_MS_MAX) * 100),
+    };
   },
 });
 </script>

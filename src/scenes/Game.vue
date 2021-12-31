@@ -1,16 +1,19 @@
 <template>
   <div>
-    <p>{{ test }}</p>
-    <button @click="gameover">gameover</button>
+    <div class="solved">{{ solved }}</div>
+    <Question />
     <ButtonTora />
     <ButtonMokugyo />
-    <Gage value="0.5" />
+    <Gage />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { computed, watchEffect, defineComponent } from "vue";
 
+import { initialize, state, start } from "../lib/game";
+
+import Question from "../components/Question.vue";
 import ButtonTora from "../components/ButtonTora.vue";
 import ButtonMokugyo from "../components/ButtonMokugyo.vue";
 import Gage from "../components/Gage.vue";
@@ -21,23 +24,27 @@ import Result from "./Result.vue";
 export default defineComponent({
   name: "Game",
   components: {
+    Question,
     ButtonTora,
     ButtonMokugyo,
     Gage,
   },
-  props: {
-    test: Number,
-  },
   ...sceneMixin,
   setup(_, { emit }) {
-    const gameover = () => {
-      emit("goScene", {
-        scene: Result,
-      });
-    };
+    initialize();
+    start();
+
+    // TODO: uncomment
+    // watchEffect(() => {
+    //   if (state.gameoverBy) {
+    //     emit("goScene", {
+    //       scene: Result,
+    //     });
+    //   }
+    // });
 
     return {
-      gameover,
+      solved: computed(() => state.solved),
     };
   },
 });
