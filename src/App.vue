@@ -1,5 +1,10 @@
 <template>
-  <component :is="scene.component" v-bind="scene.props" @goScene="goScene" />
+  <component
+    class="scene"
+    :is="scene.component"
+    v-bind="scene.props"
+    @goScene="goScene"
+  />
 </template>
 
 <script lang="ts">
@@ -34,13 +39,45 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  padding: 20px;
+
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  max-height: 1400px;
+
+  & > .scene {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: green;
+  }
 }
 </style>
