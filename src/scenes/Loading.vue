@@ -8,8 +8,7 @@ import { defineComponent, ref } from "vue";
 import { preload } from "../lib/assets";
 
 import sceneMixin from "./scene";
-// TODO: ./Title.vue に戻す
-import Title from "./Game.vue";
+import Title from "./Title.vue";
 
 export default defineComponent({
   name: "Loading",

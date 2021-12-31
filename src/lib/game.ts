@@ -2,7 +2,7 @@ import { reactive } from "vue";
 
 import { pick, Question } from "./questions";
 import { TIME_MS_MAX, TIME_DELTA } from "./consts";
-import { play } from "./sounds";
+import { play, pause } from "./sounds";
 
 interface State {
   question: Question;
@@ -38,6 +38,8 @@ export const initialize = (): void => {
 };
 
 export const start = (): void => {
+  play("bgm");
+
   state.timer = setInterval(() => {
     state.timeMs -= TIME_DELTA;
 
@@ -48,13 +50,19 @@ export const start = (): void => {
 };
 
 const onCorrect = (): void => {
+  play("ok");
+
   state.question = pick();
   state.solved++;
   state.tora = Math.random() < 0.5 ? "left" : "right";
 };
 
 const gameover = (reason: "timeover" | "wrong"): void => {
-  console.log(reason);
+  if (reason === "wrong") {
+    play("ng");
+  }
+
+  pause("bgm");
 
   state.gameoverBy = reason;
 
@@ -89,11 +97,21 @@ export const clickRight = (): void => {
 };
 
 export const hitMokugyo = (): void => {
+  if (state.mokugyoBroken) {
+    return;
+  }
+
   // TODO: 木魚が壊れる確率の式を考える
   // TODO: 木魚で回復する時間の式を考える
+  const destroy = false;
 
-  play("mokugyo");
+  if (destroy) {
+    play("break");
+  } else {
+    play("mokugyo");
+  }
 
+  state.mokugyoBroken = destroy;
   state.mokugyoHits++;
   state.timeMs = Math.min(state.timeMs + 30, TIME_MS_MAX);
 };
